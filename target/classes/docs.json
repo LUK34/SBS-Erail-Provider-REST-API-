@@ -1,0 +1,175 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "Api Documentation",
+		"version": "1.0",
+		"title": "Api Documentation",
+		"termsOfService": "urn:tos",
+		"contact": {
+			
+		},
+		"license": {
+			"name": "Apache 2.0",
+			"url": "http://www.apache.org/licenses/LICENSE-2.0"
+		}
+	},
+	"host": "localhost:8080",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "erail-controller",
+			"description": "Erail Controller"
+		}
+	],
+	"paths": {
+		"/ticket": {
+			"post": {
+				"tags": [
+					"erail-controller"
+				],
+				"summary": "bookTicket",
+				"operationId": "bookTicketUsingPOST",
+				"consumes": [
+					"application/xml",
+					"application/json"
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "passenger",
+						"description": "passenger",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Passenger"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Ticket"
+						}
+					},
+					"201": {
+						"description": "Created"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		},
+		"/ticket/{ticketId}": {
+			"get": {
+				"tags": [
+					"erail-controller"
+				],
+				"summary": "getTicket",
+				"operationId": "getTicketUsingGET",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/xml",
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "ticketId",
+						"in": "path",
+						"description": "ticketId",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Ticket"
+						}
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"404": {
+						"description": "Not Found"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Ticket": {
+			"type": "object",
+			"properties": {
+				"fromDate": {
+					"type": "string"
+				},
+				"fromPlace": {
+					"type": "string"
+				},
+				"ticketCost": {
+					"type": "string"
+				},
+				"ticketStatus": {
+					"type": "string"
+				},
+				"ticketid": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"toDate": {
+					"type": "string"
+				},
+				"toPlace": {
+					"type": "string"
+				},
+				"trainNum": {
+					"type": "string"
+				}
+			}
+		},
+		"Passenger": {
+			"type": "object",
+			"properties": {
+				"fname": {
+					"type": "string"
+				},
+				"fromDate": {
+					"type": "string"
+				},
+				"fromPlace": {
+					"type": "string"
+				},
+				"lname": {
+					"type": "string"
+				},
+				"toDate": {
+					"type": "string"
+				},
+				"toPlace": {
+					"type": "string"
+				},
+				"trainNum": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
